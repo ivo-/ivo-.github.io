@@ -1,0 +1,173 @@
+/**
+*
+* Minesweeper Game
+*
+* Author: ivcho92@gmail.com (voidstudio.eu)
+* Design: hr.vladev@gmail.com (voidstudio.eu)
+*
+**/
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+img {
+	border: none;
+}
+
+div.Minesweeper {
+	position: relative;
+	
+	/* Дължина на полето */
+	width: 360px;
+	
+	margin: 0px auto;
+	background: url("./images/bg.gif") repeat;
+	border: 1px solid #9d9d9d;
+}
+
+div.Minesweeper  table {
+	table-layout: fixed;
+	/* width: 100%; */
+	
+	/* Височина на полето - прибавяй по 31px на ред */
+	height: 313px;
+	
+	border: 1px solid #dedede;
+	
+	margin: 0px auto;
+	margin-bottom: 24px;
+	padding: 1px 0px 0px 1px;
+	
+	background-color: #8c93b0;
+}
+
+div.Minesweeper  td {
+	margin: 0px;
+	padding: 0px;
+	
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: top left;
+	
+	width: 31px;
+	height: 31px;
+	background-image: url("./images/field.gif");
+	
+	cursor: pointer;
+}
+
+div.Minesweeper  td.minesweeper_h { background-image: url("./images/field-h.gif"); }
+div.Minesweeper  td.minesweeper_b { background-image: url("./images/bomb.gif"); }
+div.Minesweeper  td.minesweeper_f { background-image: url("./images/flag.gif"); }
+div.Minesweeper  td.minesweeper_xf { background-image: url("./images/no_bomb.gif"); }
+
+div.Minesweeper  td.minesweeper_0 { background-image: url("./images/0.gif"); }
+div.Minesweeper  td.minesweeper_1 { background-image: url("./images/1.gif"); }
+div.Minesweeper  td.minesweeper_2 { background-image: url("./images/2.gif"); }
+div.Minesweeper  td.minesweeper_3 { background-image: url("./images/3.gif"); }
+div.Minesweeper  td.minesweeper_4 { background-image: url("./images/4.gif"); }
+div.Minesweeper  td.minesweeper_5 { background-image: url("./images/5.gif"); }
+div.Minesweeper  td.minesweeper_6 { background-image: url("./images/6.gif"); }
+div.Minesweeper  td.minesweeper_7 { background-image: url("./images/7.gif"); }
+div.Minesweeper  td.minesweeper_8 { background-image: url("./images/8.gif"); }
+
+div.Minesweeper p {
+	width: 100%;
+	
+	margin-top: 10px;
+	overflow: hidden;
+	position: relative;
+	
+	font: 14pt "Verdana";
+	color: #333;
+	text-shadow: 1px 1px 0px #ddd;
+	text-align: center;
+}
+
+div.Minesweeper center {
+	width: 100%;
+	height: 32px;
+	
+	margin: 20px 0px;
+	overflow: hidden;
+	position: relative;
+}
+
+div.Minesweeper center h4 {
+	float: left;
+	
+	font: 12pt "Verdana";
+	color: #333;
+	text-shadow: 1px 1px 0px #ddd;
+}
+
+div.Minesweeper center h4 img {
+	position: relative;
+	top: 0px;
+}
+
+h4#smile {
+	background-image: url("./images/smile.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 0 12%;
+	height: 32px;
+	width: 10%;
+	
+	cursor: pointer;
+}
+
+h4#bombs {
+	background-image: url("./images/stat_bombs.png");
+	background-repeat: no-repeat;
+	background-position: right;
+	
+	width: 30%;
+	text-align: center;
+	height: 22px;
+	padding-top: 10px;
+	padding-left: 3%;
+}
+
+h4#time {
+	background-image: url("./images/stat_clock.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	
+	width: 30%;
+	text-align: center;
+	height: 22px;
+	padding-top: 10px;
+	padding-right: 3%;
+}
+
+div.Minesweeper div {
+	position: absolute;
+	z-index: 2;
+	
+	top: 0px;
+	left: 0px;
+	
+	width: 100%;
+	height: 100%;
+	
+	background: url("./images/bg.gif") repeat;
+	display: none;
+	
+	-moz-opacity: .75;
+	filter: alpha(opacity=75);
+	opacity: .75;
+	
+	cursor: pointer;
+}
+
+p#new_game {
+	font: bold 14pt "Verdana";
+	text-align: center;
+	color: black;
+	
+	top: 30%;
+}

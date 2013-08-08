@@ -1,0 +1,205 @@
+/*
+ * VOID STUDIO CSS
+*/
+
+body, html {
+	overflow: auto;
+	margin: 0px;
+	padding: 0px;
+	background-color: #f7f7f7;
+}
+
+div {
+	position: absolute;
+	overflow: hidden;
+}
+
+img {
+	margin: 0px;
+	border: none;
+	display: block;
+}
+
+#loader {
+	background: transparent url('img/transparent.gif') no-repeat top left;
+}
+
+#phone, #spanner, #mail, #paper {
+	background: transparent url('img/transparent.gif') no-repeat center;
+	overflow: visible;
+}
+
+img.icon {
+	position: absolute;
+	z-index: 10;
+	cursor: pointer;
+}
+
+div.info {
+	position: absolute;
+	overflow: hidden;
+	z-index: 9;
+	
+	background: transparent url('img/transparent.gif') repeat-y top left;
+	
+	height: 0px;
+}
+
+div.info img.boxTop {
+	position: absolute;
+	top: 0px;
+}
+
+div.info img.boxBottom {
+	position: absolute;
+	bottom: 0px;
+}
+
+div.info div.title {
+	font: bold 14px verdana;
+	color: #7a7b7c;
+	
+	text-align: center;
+	text-decoration: underline;
+	
+	position: relative;
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+
+div.info div.contentAbout {
+	font: 11px verdana;
+	color: green;
+	
+	text-align: justify;
+	text-indent: 10px;
+	padding: 0 14px;
+	
+	position: relative;
+}
+
+div.info div.contentAbout p {
+	font: 11px verdana;
+	color: green;
+	
+	text-align: center;
+	font-weight: bold;
+	padding: 0 14px;
+	
+	position: relative;
+	margin: 10px 0px 10px 0px;
+}
+
+div.info div.contentServices {
+	font: 11px verdana;
+	color: green;
+	
+	text-align: justify;
+	text-indent: 10px;
+	padding: 0 14px;
+	
+	position: relative;
+	margin-top: 15px;
+}
+
+div.contentServices div.line {
+	font: 13px verdana;
+	color: #b70000;
+	
+	text-align: center;
+	padding: 0 4px;
+	
+	position: relative;
+	margin-top: 5px;
+}
+
+div.info div.contentContacts {
+	font: 11px verdana;
+	color: green;
+	
+	text-align: justify;
+	text-indent: 10px;
+	padding: 0px;
+	
+	position: relative;
+	margin-top: 40px;
+}
+
+div.contentContacts div.line {
+	font: 13px verdana;
+	color: #1871b2;
+	
+	text-align: center;
+	text-indent: 0px;
+	padding: 0px;
+	
+	position: relative;
+	margin-top: 5px;
+}
+
+div.contentContacts div.line img.officeMail {
+	width: 140px;
+	height: 15px;
+	
+	padding: 0px;
+	display: inline;
+	
+	position: relative;
+	margin-bottom: -3px;
+}
+
+div#letters {
+	width: 120px;
+	height: 30px;
+	
+	position: absolute;
+	
+	top: 135px;
+	left: 585px;
+}
+
+div#letters div {
+	position: absolute;
+}
+
+div#letters img.letter {
+	position: absolute;
+}
+
+div#letters img.underline {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+div#footer {
+	position: absolute;
+	font: bold 11px "Verdana";
+	color: #3d3a33;
+}
+div#footer #vs {
+	position: absolute;
+	left: 0px;
+	cursor: pointer;
+}
+div#footer #cs {
+	position: absolute;
+	right: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
