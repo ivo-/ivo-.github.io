@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lina</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+  </body>
+  <script>
+   // --------------------------------------------------------------------------
+   // Config
+
+   // Diameter of the drawing area's inner circle.
+   const DIAMETER = 600;
+
+   // Hear offet positions.
+   const HEART_OFFSET_X = DIAMETER / 2;
+   const HEART_OFFSET_Y = DIAMETER / 1.5;
+
+   // How much to enlarge the heart from original formula.
+   const ENLARGE_FACTOR = DIAMETER / 50;
+
+   // Range of the heart formula.
+   const FROM_RADIANS = -Math.PI;
+   const TO_RADIANS = Math.PI;
+
+   // Number of points to draw the heart.
+   const POINTS_NUM = DIAMETER / 3;
+
+   // Step between two points.
+   const STEP_RADIANS = (TO_RADIANS - FROM_RADIANS) / POINTS_NUM;
+
+   // --------------------------------------------------------------------------
+   // Randomization
+
+   function randColor() {
+       return "#"+((1<<24)*Math.random()|0).toString(16);
+   }
+
+   function randPositiveOrNegative() {
+       return Math.random() > 0.5 ? 1 : -1;
+   }
+
+   function randFractionOfDiameter() {
+       return Math.random() * DIAMETER;
+   }
+
+   function randOuterCoord() {
+       const k = randPositiveOrNegative();
+       if (k === 1) {
+           return DIAMETER + randFractionOfDiameter();
+       }
+
+       return -1 * randFractionOfDiameter();
+   }
+
+   // --------------------------------------------------------------------------
+   // Data manipulation
+
+   /**
+    * Generate pixels that form the desired text.
+    */
+   function getTextPixels(t, width=300, height = 100) {
+       const canvas = document.createElement('canvas');
+       const ctx = canvas.getContext('2d');
+
+       canvas.width = width;
+       canvas.height = height;
+
+       ctx.font = "100px sans-serif";
+       ctx.fillStyle = 'red';
+       ctx.fillText(t, 0, height);
+
+       const data = ctx.getImageData(0, 0, width, height).data;
+       const whiteColor = 0;
+       const matrix = [];
+
+       for (let i = 0; i < data.length; i += 4) {
+           const pixelsProcessed = i / 4;
+           const row = Math.floor(pixelsProcessed / width);
+           const col = pixelsProcessed - row * width;
+           const color = data[i] + data[i + 1] + data[i + 2] + data[i + 3];
+
+           if (color !== whiteColor) {
+               matrix.push({
+                   y: row,
+                   x: col,
+               });
+           }
+       }
+
+       // We don't actually need all the pixels, one from three is enough.
+       return matrix.filter((p, i) => i % 3 === 0);
+   }
+
+   /**
+    * Get initial particles data.
+    */
+   function getData() {
+       const data = [];
+       // <3 math => http://mathworld.wolfram.com/HeartCurve.html
+       for (let t = FROM_RADIANS; t <= TO_RADIANS; t+=STEP_RADIANS) {
+           x = 16 * Math.pow(Math.sin(t),3);
+           y = 13 * Math.cos(t) - 5* Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+           data.push({
+               x: randOuterCoord(),
+               y: randOuterCoord(),
+               color: 'red',
+               targetX: DIAMETER - Math.round(HEART_OFFSET_X + x * ENLARGE_FACTOR),
+               targetY: DIAMETER - Math.round(HEART_OFFSET_Y + y * ENLARGE_FACTOR),
+           });
+       }
+
+       getTextPixels('Лина').forEach((p) => {
+           data.push({
+               isTextPixel: true,
+               x: randOuterCoord(),
+               y: randOuterCoord(),
+               color: 'red',
+               targetX: p.x + 182,
+               targetY: p.y + 135,
+           });
+       });
+
+       return data;
+   }
+
+   /**
+    * Move particles. This is executed on every animation frame.
+    */
+   function moveParticles(data) {
+       const now = +(new Date);
+       // Heart particles should always move around the heart border.
+       if ((now - moveParticles.lastMoveTime) > 500) {
+           moveParticles.lastMoveTime = now;
+           const heartPixels = data.filter(d => !d.isTextPixel);
+           heartPixels.forEach((d, i) => {
+               const n = heartPixels[i + 1] || heartPixels[0];
+               d.targetX = n.targetX;
+               d.targetY = n.targetY;
+           });
+       }
+
+       // Move particles to their destinations.
+       data.forEach((d) => {
+           d.x += ((d.targetX - d.x) / 50).toFixed(2) * 1;
+           d.y += ((d.targetY - d.y) / 50).toFixed(2) * 1;
+       });
+   }
+
+   moveParticles.lastMoveTime = +(new Date);
+
+   // --------------------------------------------------------------------------
+   // Drawing
+
+   function createDrawingArea() {
+       const canvas = document.createElement('canvas');
+       canvas.width = DIAMETER;
+       canvas.height = DIAMETER - 150;
+       canvas.style.border = 'solid';
+       canvas.style.position = 'fixed';
+       canvas.style.top = `calc(50% - ${DIAMETER / 2}px)`;
+       canvas.style.left = `calc(50% - ${DIAMETER / 2}px)`;
+       return canvas;
+   }
+
+   function draw(data, ctx) {
+       ctx.fillStyle = 'rgba(0,0,0,0.1)';
+       ctx.fillRect(0, 0, DIAMETER, DIAMETER);
+
+       data.forEach((d) => {
+           ctx.fillStyle = d.color;
+           ctx.fillRect(d.x,d.y,4,4)
+       });
+   }
+
+   function start() {
+       const canvas = createDrawingArea();
+       const ctx = canvas.getContext('2d');
+       const data = getData();
+
+       document.body.appendChild(canvas);
+
+       requestAnimationFrame(function frame() {
+           moveParticles(data);
+           draw(data, ctx);
+           requestAnimationFrame(frame);
+       });
+   }
+
+   // --------------------------------------------------------------------------
+   // Start the animation
+
+   start();
+  </script>
+</html>
