@@ -133,7 +133,7 @@
        // Heart particles should always move around the heart border.
        if ((now - moveParticles.lastMoveTime) > 500) {
            moveParticles.lastMoveTime = now;
-           const heartPixels = data.filter(d => !d.isTextPixel);
+           const heartPixels = moveParticles.heartPixels || data.filter(d => !d.isTextPixel);
            heartPixels.forEach((d, i) => {
                const n = heartPixels[i + 1] || heartPixels[0];
                d.targetX = n.targetX;
@@ -149,6 +149,7 @@
    }
 
    moveParticles.lastMoveTime = +(new Date);
+   moveParticles.heartPixels = null;
 
    // --------------------------------------------------------------------------
    // Drawing
