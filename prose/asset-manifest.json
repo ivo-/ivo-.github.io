@@ -1,16 +1,16 @@
 {
-  "main.css": "/prose/static/css/main.d35852c7.chunk.css",
-  "main.js": "/prose/static/js/main.917adb10.chunk.js",
-  "main.js.map": "/prose/static/js/main.917adb10.chunk.js.map",
+  "main.css": "/prose/static/css/main.f342d7cc.chunk.css",
+  "main.js": "/prose/static/js/main.ef47a051.chunk.js",
+  "main.js.map": "/prose/static/js/main.ef47a051.chunk.js.map",
   "runtime~main.js": "/prose/static/js/runtime~main.0a4db5c6.js",
   "runtime~main.js.map": "/prose/static/js/runtime~main.0a4db5c6.js.map",
   "static/css/2.531de95b.chunk.css": "/prose/static/css/2.531de95b.chunk.css",
   "static/js/2.22ca61fd.chunk.js": "/prose/static/js/2.22ca61fd.chunk.js",
   "static/js/2.22ca61fd.chunk.js.map": "/prose/static/js/2.22ca61fd.chunk.js.map",
   "index.html": "/prose/index.html",
-  "precache-manifest.a68b3152da3c084ec8532626a3ae1649.js": "/prose/precache-manifest.a68b3152da3c084ec8532626a3ae1649.js",
+  "precache-manifest.c1a2f91faec6488b4baedc4b97d7ef78.js": "/prose/precache-manifest.c1a2f91faec6488b4baedc4b97d7ef78.js",
   "service-worker.js": "/prose/service-worker.js",
   "static/css/2.531de95b.chunk.css.map": "/prose/static/css/2.531de95b.chunk.css.map",
-  "static/css/main.d35852c7.chunk.css.map": "/prose/static/css/main.d35852c7.chunk.css.map",
+  "static/css/main.f342d7cc.chunk.css.map": "/prose/static/css/main.f342d7cc.chunk.css.map",
   "static/media/semantic.min.css": "/prose/static/media/outline-icons.ef60a4f6.woff"
 }
