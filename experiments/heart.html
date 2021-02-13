@@ -1,10 +1,77 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Lina</title>
+    <title></title>
     <meta charset="utf-8" />
+    <style>
+     .flip-card {
+       background-color: transparent;
+       width: 600px;
+       height: 450px;
+       perspective: 1000px;
+       position: fixed;
+       top: calc(50% - 225px);
+       left: calc(50% - 300px);
+     }
+
+     .flip-card-inner {
+       position: relative;
+       width: 100%;
+       height: 100%;
+       text-align: center;
+       transition: transform 0.6s;
+       transform-style: preserve-3d;
+       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+     }
+
+     .flip-card:hover .flip-card-inner {
+       transform: rotateY(180deg);
+     }
+
+     .flip-card-front, .flip-card-back {
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       -webkit-backface-visibility: hidden;
+       backface-visibility: hidden;
+     }
+
+     .flip-card-front {
+       color: black;
+     }
+
+     .flip-card-back {
+       position: relative;
+       background-color: #CB8120;
+       color: white;
+       transform: rotateY(180deg);
+     }
+
+     .flip-card-back p {
+       position: absolute;
+       bottom: 10px;
+       right: 10px;
+     }
+    </style>
   </head>
   <body>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"></div>
+        <div class="flip-card-back">
+          <br />
+          <h1>С МНОГО МНОГО ЛЮБОВ</h1>
+          <div>... за мис Неврокопче 💖</div>
+          <div>... за най-хубавото момичецне в радиус от 6,371км 🌎</div>
+          <div>... за най-специалното нещо, направено в Гоце Делчев 🏙</div>
+          <div>... за моето любимо сладко-люто сосче 🌶️</div>
+          <div>... за другото, освен женени с деца, което няма да ми омръзне да гледам 👪</div>
+          <div>... за момичето, което мирише по-хубаво от люляк 💜</div>
+          <div>... за моята Ели 💖</div>
+          <p>... от Иво 🌹</p>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
    // --------------------------------------------------------------------------
@@ -25,7 +92,7 @@
    const TO_RADIANS = Math.PI;
 
    // Number of points to draw the heart.
-   const POINTS_NUM = DIAMETER / 3;
+   const POINTS_NUM = DIAMETER / 10;
 
    // Step between two points.
    const STEP_RADIANS = (TO_RADIANS - FROM_RADIANS) / POINTS_NUM;
@@ -67,7 +134,7 @@
        canvas.width = width;
        canvas.height = height;
 
-       ctx.font = "100px sans-serif";
+       ctx.font = "80px sans-serif";
        ctx.fillStyle = 'red';
        ctx.fillText(t, 0, height);
 
@@ -111,14 +178,14 @@
            });
        }
 
-       getTextPixels('Лина').forEach((p) => {
+       getTextPixels('Елиана').forEach((p) => {
            data.push({
                isTextPixel: true,
                x: randOuterCoord(),
                y: randOuterCoord(),
                color: 'red',
-               targetX: p.x + 182,
-               targetY: p.y + 135,
+               targetX: p.x + 160,
+               targetY: p.y + 115,
            });
        });
 
@@ -159,20 +226,21 @@
        const canvas = document.createElement('canvas');
        canvas.width = DIAMETER;
        canvas.height = DIAMETER - 150;
-       canvas.style.border = 'solid';
-       canvas.style.position = 'fixed';
-       canvas.style.top = `calc(50% - ${DIAMETER / 2}px)`;
-       canvas.style.left = `calc(50% - ${DIAMETER / 2}px)`;
+       canvas.style.border = 'solid 1px #efefef';
+       // canvas.style.position = 'fixed';
+       // canvas.style.top = `calc(50% - ${DIAMETER / 2}px)`;
+       // canvas.style.left = `calc(50% - ${DIAMETER / 2}px)`;
        return canvas;
    }
 
    function draw(data, ctx) {
-       ctx.fillStyle = 'rgba(0,0,0,0.1)';
+       ctx.fillStyle = 'rgba(255,255,255,0.2)';
        ctx.fillRect(0, 0, DIAMETER, DIAMETER);
 
        data.forEach((d) => {
            ctx.fillStyle = d.color;
-           ctx.fillRect(d.x,d.y,4,4)
+           ctx.fillText('🖕', d.x, d.y);
+           // ctx.fillRect(d.x,d.y,4,4)
        });
    }
 
@@ -181,7 +249,7 @@
        const ctx = canvas.getContext('2d');
        const data = getData();
 
-       document.body.appendChild(canvas);
+       document.querySelector('.flip-card-front').appendChild(canvas);
 
        requestAnimationFrame(function frame() {
            moveParticles(data);
